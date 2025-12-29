@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Adrija</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background-color: #e6d9ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    button {
+        padding: 15px 35px;
+        margin: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background-color: #b8a1e3;
+        color: white;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #9d84d6;
+        transform: scale(1.05);
+    }
+
+    .message {
+        font-size: 22px;
+        color: #4b3f72;
+        margin-bottom: 15px;
+    }
+
+    .small-message {
+        font-size: 16px;
+        color: #4b3f72;
+        margin-top: 10px;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .love-screen {
+        background-color: #722f37;
+        color: white;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .love-screen h1 {
+        font-size: 48px;
+        margin: 10px 0;
+        text-transform: uppercase;
+    }
+
+    .love-screen p {
+        font-size: 22px;
+        margin-top: 10px;
+        text-transform: lowercase;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+    <button onclick="adrijaFlow()">Adrija</button>
+    <button onclick="anirudhFlow()">Anirudh</button>
+</div>
+
+<script>
+let moveCount = 0;
+const triggerCounts = [
+    5,10,13,17,19,20,21,28,30,35,40,45,50,
+    55,60,65,70,75,80,85,90,95,100
+];
+
+function adrijaFlow() {
+    showApology(false);
+}
+
+function anirudhFlow() {
+    showApology(true);
+}
+
+function showApology(showLieLine) {
+    const main = document.getElementById("main");
+    moveCount = 0;
+
+    main.innerHTML = `
+        ${showLieLine ? `<div class="message">he he baby don't lie</div>` : ``}
+        <div class="message">I'm Sorry baby.....</div>
+        <button onclick="forgive()">I forgive you</button>
+        <button id="wontBtn" class="absolute" onclick="moveButton()">I won't</button>
+        <div id="smallMsg" class="small-message"></div>
+    `;
+}
+
+function moveButton() {
+    moveCount++;
+
+    const btn = document.getElementById("wontBtn");
+    const maxX = window.innerWidth - btn.offsetWidth;
+    const maxY = window.innerHeight - btn.offsetHeight;
+
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = Math.random() * maxY + "px";
+
+    if (triggerCounts.includes(moveCount)) {
+        document.getElementById("smallMsg").innerText =
+            "I'm sorry adrija really really sorry babyyyyyy";
+    }
+}
+
+function forgive() {
+    document.body.innerHTML = `
+        <div class="love-screen">
+            <h1>I LOVE YOU MON..</h1>
+            <p>i'm sorry i didn't mean to hurt you</p>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
